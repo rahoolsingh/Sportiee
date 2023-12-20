@@ -4,10 +4,10 @@ function Header() {
   return (
     <div className="w-full p-5 text-white bg-[#1b1f23] ">
       <div className="font-bold text-2xl container max-w-7xl m-auto flex justify-between">
-        <div className="w-full text-left">
-          Sportiee{" "}
-          <span className="text-xs text-zinc-500 hidden lg:inline">
-            DASHBOARD
+        <div className="w-full text-left flex align-baseline">
+          <span className="flex">
+            <img src={"public/sportiee.svg"} className="w-8 bg-white p-1 rounded-lg me-2"/>
+            Sportiee
           </span>
         </div>
         <div className="w-full text-center text-zinc-400 hidden lg:inline md:inline">
