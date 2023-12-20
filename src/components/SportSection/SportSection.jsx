@@ -13,12 +13,11 @@ function SportSection({ data }) {
           .then(dataJ => {
               setRes(dataJ.results)
           })
-        //   .then(()=>{res.length && console.log(res)})
       }, [res.length]);
 
   return res.length && (
     <div className="my-5 pb-2 rounded-md overflow-hidden shadow-sm">
-      <div className="px-4 py-3 text-white font-bold text-xl bg-[#1b1f23] rounded-xl flex justify-between align-middle">
+      <div className="px-4 py-3 text-white font-bold text-xl bg-[#1e1e1f] rounded-xl flex justify-between align-middle">
         <span>{data.game}</span>
         <span className="btn text-sm py-1 bg-zinc-800 rounded-md text-white px-2"><i className="fa-solid fa-plus"></i> Add Team</span>
       </div>
