@@ -1,4 +1,4 @@
-import React from "react";
+import logo from '../../assets/sportiee.svg'
 
 function Header() {
   return (
@@ -6,7 +6,7 @@ function Header() {
       <div className="font-bold text-2xl container max-w-7xl m-auto flex justify-between">
         <div className="w-full text-left flex align-baseline">
           <span className="flex">
-            <img src={"public/sportiee.svg"} className="w-8 bg-white p-1 rounded-lg me-2"/>
+            <img src={logo} className="w-8 bg-white p-1 rounded-lg me-2"/>
             Sportiee
           </span>
         </div>
