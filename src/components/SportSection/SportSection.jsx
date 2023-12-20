@@ -8,7 +8,7 @@ function SportSection({ data }) {
 
       useEffect(() => {
         fetch(
-            `https://api.unsplash.com/search/photos?query=${img}&client_id=${process.env.VITE_ACCESS_KEY}`
+            `https://api.unsplash.com/search/photos?query=${img}&client_id=${import.meta.env.VITE_ACCESS_KEY}`
           ).then((data)=> data.json())
           .then(dataJ => {
               setRes(dataJ.results)
