@@ -64,6 +64,6 @@ To set background images for the cards:
     ```
 
     Replace `<YOUR_ACCESS_KEY>` with the key you copied.
-    Save this file as `.env`.
+6. Save this file as `.env`.
 
 Now, the background images will appear in your cards as configured.
