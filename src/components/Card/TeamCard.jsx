@@ -4,28 +4,51 @@ function TeamCard({ data, img }) {
   const [teamName, setTeamName] = useState(data.team_name);
   const [teamPlayers, setTeamPlayers] = useState(data.players);
   const [plyrCount, setPlyrCount] = useState(0);
+
+  const [editPlayer, setEditPlayer] = useState("hidden");
+  const [newPlayer, setNewPlayer] = useState("hidden");
   const [newPlayerName, setNewPlayerName] = useState("");
   const [newPlayerAge, setNewPlayerAge] = useState("");
-  const [editPlayer, setEditPlayer] = useState("hidden");
 
-  const handleAddedPlayer = () => {
+  const handleAddPlayerBtn = () => {
+    setEditPlayer("hidden")
+    if(newPlayer == "hidden")
+      setNewPlayer("");
+    else
+      setNewPlayer("hidden");
+  };
+
+  const handleEditPlayerBtn = () => {
+    setNewPlayer("hidden");
+    if(editPlayer == "hidden")
+      setEditPlayer("flex")
+    else
+      setEditPlayer("hidden")
+  }
+
+  const handleNewPlayer = () => {
     if (newPlayerName.trim() !== "" && newPlayerAge.trim() !== "") {
       const newPlayer = { name: newPlayerName, age: newPlayerAge };
       setTeamPlayers([newPlayer, ...teamPlayers]);
       setNewPlayerName("");
       setNewPlayerAge("");
-      setEditPlayer("hidden");
+      setNewPlayer("hidden");
     }
   };
 
-  const handleAddPlayer = () => {
-    setEditPlayer("");
+  const handleCloseNewPlayer = () => {
+    setNewPlayer("hidden");
   };
+
+  const handleDeletePlayer = (index) => {
+    const updatedPlayers = [...teamPlayers];
+    updatedPlayers.splice(index, 1);
+    setTeamPlayers(updatedPlayers);
+  }
 
   // Player Counter
   useEffect(() => {
     setPlyrCount(teamPlayers.length);
-    console.table(teamName, teamPlayers);
   }, [teamPlayers.length, teamName, teamPlayers]);
 
   return (
@@ -43,7 +66,7 @@ function TeamCard({ data, img }) {
                 <th className="text-center">Age</th>
               </tr>
 
-              <tr className={`font-light ${editPlayer}`}>
+              <tr className={`font-light ${newPlayer}`}>
                 <td className="w-full text-left ">
                   <input
                     type="text"
@@ -64,11 +87,16 @@ function TeamCard({ data, img }) {
                     className="w-[30px] bg-transparent text-center mx-1"
                   />
                 </td>
-                <td className="text-center">
+                <td className="text-center flex">
                   <button
                     type="submit"
-                    className="fa-solid fa-square-check hover:text-red-500 hover:cursor-pointer px-1"
-                    onClick={handleAddedPlayer}
+                    className="fa-solid fa-check hover:text-red-500 hover:cursor-pointer px-1"
+                    onClick={handleNewPlayer}
+                  ></button>
+                  <button
+                    type="cancel"
+                    className="fa-solid fa-close hover:text-red-500 hover:cursor-pointer px-1"
+                    onClick={handleCloseNewPlayer}
                   ></button>
                 </td>
               </tr>
@@ -77,6 +105,18 @@ function TeamCard({ data, img }) {
                 <tr key={index} className="font-light">
                   <td className="w-full text-left">{player.name}</td>
                   <td className="text-center">{player.age}</td>
+                  <td className={`text-center ${editPlayer}`}>
+                    <button
+                      type="submit"
+                      className="fa-solid fa-pen hover:text-red-500 hover:cursor-pointer px-1"
+                      // onClick={handleEditPlayer}
+                    ></button>
+                    <button
+                      type="cancel"
+                      className="fa-solid fa-close hover:text-red-500 hover:cursor-pointer px-1"
+                      onClick={() => handleDeletePlayer(index)}
+                    ></button>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -86,10 +126,11 @@ function TeamCard({ data, img }) {
         <div className="flex justify-between text-sm">
           <div>Players: {plyrCount}</div>
           <div className="flex gap-3">
-            <i className="fa-solid fa-user-pen hover:text-red-500 hover:cursor-pointer"></i>
+            <i className="fa-solid fa-user-pen hover:text-red-500 hover:cursor-pointer"
+              onClick={handleEditPlayerBtn}></i>
             <i
               className="fa-solid fa-user-plus hover:text-red-500 hover:cursor-pointer"
-              onClick={handleAddPlayer}
+              onClick={handleAddPlayerBtn}
             ></i>
           </div>
         </div>
