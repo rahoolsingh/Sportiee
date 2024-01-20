@@ -49,7 +49,7 @@ To run this project locally on your machine, follow these steps:
     
 ---
 
-### Setting Up Background Images
+### Setting Up Card Background Images
 
 To set background images for the cards:
 
